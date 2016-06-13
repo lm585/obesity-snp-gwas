@@ -1,0 +1,63 @@
+==> script-convert-R-hypergeom.26popu <==
+#
+# rs10458787      G       A       100     PASS    AFR     895     427     1322    0.677005        AMR     529     165     694     0.762248        ASN     1005    3       1008    0.997024        EUR     767     2391006    0.762425        SAN     844     134     978     0.862986        ALL     4040    968     0.806709
+#
+
+awk '
+    BEGIN {FS = "\t"; OFS = "\t"}
+    {
+
+ print "N = ",$137 + $138;
+ print "r = ", $137;
+ for(i = 6 ; i <= 131; i = i+5) ## 6, 11, 16,... 131
+ {
+  print "n = ", $(i+3);
+  print "y = ", $(i+1);
+  print "log10(sum(dhyper(0:y,r,N-r,n)))";
+  print "log10(sum(dhyper(y:n,r,N-r,n)))";
+ }
+     }' $1 # obes.inc.rsID.allele.freq  obes.dec.rsID.allele.freq
+
+
+running R to get dhyper() values
+==> script-hyperg-col-2-row-log10.26popu <==
+##
+#-0.1633241
+#-0.4078732
+#-1.007838
+#-0.02824568
+#-0.0351201
+#-0.9307687
+#-1.074334e-10
+#-8.665682
+#-10.36686
+#-6.076517e-12
+
+awk 'BEGIN{
+ OFS = "\t";
+ ORS = "";
+ }
+ {
+  if($1 ~ /e-/)
+    logv = 0;
+  else
+    logv = $1;
+
+  if($1 ~ /-Inf/)
+    logv = -9999;
+
+  if(NR % 2 == 1)
+  {
+   dep=logv;
+  }
+  else
+  {
+   if(logv > dep) # depleted, p-value=e-50, loh10p= -49, output as negative value
+     print dep "\t";
+   else  ## over-represented , p-value=e-50, loh10p= -49, output as positive value
+     print (-1.0)*logv  "\t";
+  }
+  if(NR % (26 * 2) == 0)
+    print "\n";
+ }
+    '  $1 ##  temp.dec.allele.log-p.26popu
