@@ -1,0 +1,31 @@
+#
+# rs10458787      G       A       100     PASS    AFR     895     427     1322    0.677005        AMR     529     165     694     0.762248        ASN     1005    3       1008    0.997024        EUR     767     2391006    0.762425        SAN     844     134     978     0.862986        ALL     4040    968     0.806709
+#
+
+awk '{
+     
+ print "N = ",$32 + $33;
+ print "r = ", $32;
+ print "n = ", $9;
+ print "y = ", $7;
+ print "log10(sum(dhyper(0:y,r,N-r,n)))";
+ print "log10(sum(dhyper(y:n,r,N-r,n)))"; 
+ print "n = ", $14;
+ print "y = ", $12;
+ print "log10(sum(dhyper(0:y,r,N-r,n)))";
+ print "log10(sum(dhyper(y:n,r,N-r,n)))";
+ print "n = ", $19;
+ print "y = ", $17;
+ print "log10(sum(dhyper(0:y,r,N-r,n)))";
+ print "log10(sum(dhyper(y:n,r,N-r,n)))";
+ print "n = ", $24;
+ print "y = ", $22;
+ print "log10(sum(dhyper(0:y,r,N-r,n)))";
+ print "log10(sum(dhyper(y:n,r,N-r,n)))";
+ print "n = ", $29;
+ print "y = ", $27;
+ print "log10(sum(dhyper(0:y,r,N-r,n)))";
+ print "log10(sum(dhyper(y:n,r,N-r,n)))";
+
+     }' $1
+
