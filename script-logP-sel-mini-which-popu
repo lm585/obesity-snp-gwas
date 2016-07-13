@@ -1,0 +1,28 @@
+#
+#        AFR     AMR     ASN     EUR     SAN
+# rs1011731       G       -40.29368       -2.98974        99.7424 -4.253532       6.71981
+
+
+# slelec min, which popu is the min, AFR 1, AMR 2, ASN 3
+# min > 100
+
+awk 'BEGIN {FS = "\t"; OFS = "\t"}
+ {
+  min = 0;
+  j = -1;
+ for(i = 3; i <= 7; i++)
+ {
+  if($i <  min)
+  {
+   min = $i;
+   j = i - 2;
+  }
+ }
+ if(min < -100)
+ {
+  print $1, min, j;
+ }
+ 
+ }
+ '  obes.inc.dchip.logp.5popu.txt
+

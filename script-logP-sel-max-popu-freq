@@ -1,0 +1,21 @@
+#
+
+# rs10769908      126.27  1
+# rs12408810      9999    4
+
+cat  temp-sel-IDs | while read ll
+do
+  id=`echo "$ll" | cut -f 1`
+  logp=`echo "$ll" | cut -f 2`
+  popu=`echo "$ll" | cut -f 3`
+  awk 'BEGIN {FS = "\t"; OFS = "\t"} 
+   {
+ if($1 == "'$id'")
+ {
+  #afr 10 (1), amr 15 (2) , asian 20 (3), all 34 allele freq
+  j = 10 + ('$popu' - 1) * 5;
+  print $1, $2, $3, $(j-4), '$logp', $j, $34;
+ } 
+   }
+  '   obes.inc.rsID.allele.freq.5popu 
+done

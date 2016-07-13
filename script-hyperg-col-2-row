@@ -1,0 +1,20 @@
+awk 'BEGIN{
+ OFS = "\t";
+ ORS = "";
+ }
+ {
+  if(NR % 2 == 1)
+  {
+   dep=$1;
+  }
+  else
+  {
+   if($1 > dep) 
+     print dep "\t";
+   else
+     print $1  "\t";
+  }
+  if(NR % 10 == 0)
+    print "\n";
+ }
+    ' geometry.txt  

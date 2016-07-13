@@ -1,0 +1,28 @@
+#
+#        AFR     AMR     ASN     EUR     SAN
+# rs1011731       G       -40.29368       -2.98974        99.7424 -4.253532       6.71981
+
+
+# slelec max, which popu is the max, AFR 1, AMR 2, ASN 3
+# max > 100
+
+awk 'BEGIN {FS = "\t"; OFS = "\t"}
+ {
+  max = 0;
+  j = -1;
+ for(i = 3; i <= 7; i++)
+ {
+  if($i > max)
+  {
+   max = $i;
+   j = i - 2;
+  }
+ }
+ if(max > 100)
+ {
+  print $1, max, j;
+ }
+ 
+ }
+ '  obes.inc.dchip.logp.5popu.txt
+

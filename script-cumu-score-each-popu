@@ -1,0 +1,12 @@
+#
+if [ $# -ne 1 ]
+then
+  echo $0 "ACB(popu-name)"
+fi
+
+popu="$1"
+awk '$2 == "'$popu'"  ' 1000-genome-ID-26popu.txt | cut -f 1 | sort > temp-peopId-ACB
+sort -t '	' +0 -1 cumu-score-2504-peoples   > temp-cumu-score-2504-peoples-sorted
+echo "$popu" > temp-1218pm-$popu
+join -t '	' temp-peopId-ACB temp-cumu-score-2504-peoples-sorted | cut -f 2 >> temp-1218pm-$popu
+

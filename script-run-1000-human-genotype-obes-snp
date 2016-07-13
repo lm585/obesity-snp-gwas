@@ -1,0 +1,13 @@
+#
+
+rm obes.rsID.3.5popu.allele.freq
+
+t=`ls /data/linyong/1000-genome-genotype/*.genotypes.vcf`
+for ll in `echo $t`
+do
+  ls -lh $ll
+  ls $ll >  file-names-vcf 
+  1000-human-genotype-obes-snp  file-names-vcf 1000-genome-ID-popu.txt    obes.rsID.3   2513  out-1120-1-14-2016 
+  cat out-1120-1-14-2016 >> obes.rsID.3.5popu.allele.freq
+done
+

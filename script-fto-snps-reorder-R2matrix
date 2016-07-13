@@ -1,0 +1,39 @@
+# head  r2_71335.txt
+# RS_number       rs6499640       rs9940128       rs1421085       rs1558902       rs1121980       rs62033400      rs17817449      rs8043757       rs8050136       rs11075990      rs9939609       rs7202116       rs7185735  rs17817964      rs12149832
+# rs6499640       1.0     0.003   0.018   0.018   0.009   0.019   0.005   0.004   0.003   0.011   0.011   0.012   0.012   0.018   0.021
+# rs9940128       0.003   1.0     0.085   0.085   0.763   0.07    0.519   0.625   0.564   0.416   0.412   0.41    0.41    0.072   0.066
+# rs1421085       0.018   0.085   1.0     1.0     0.061   0.904   0.09    0.077   0.071   0.054   0.054   0.054   0.054   0.917   0.878
+#
+
+head -1 $1 > temp-reorder-R2matrix
+cat fto-snp-2groups | while read ll
+do
+ grep "^$ll	" $1 | head -1 >>  temp-reorder-R2matrix
+done
+cat temp-reorder-R2matrix
+echo "---------------------------------------------"
+
+cut -f 1 temp-reorder-R2matrix > temp-reorder-R2matrix-col
+
+cat fto-snp-2groups | while read ll
+do
+ head -1  temp-reorder-R2matrix | awk '
+ {
+  for(i = 1; i <= NF; i++)
+  {
+   if($i == "'$ll'")
+   {
+    print i;
+   }
+  }
+ }
+ ' | head -1 > temp-fn
+ fn=`cat temp-fn` 
+ cut -f $fn   temp-reorder-R2matrix  > temp-col
+ paste temp-reorder-R2matrix-col  temp-col > temp-2
+ mv temp-2 temp-reorder-R2matrix-col
+done
+
+cat temp-reorder-R2matrix-col
+rm temp-reorder-R2matrix temp-fn temp-col 
+

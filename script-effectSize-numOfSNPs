@@ -1,0 +1,18 @@
+#
+
+cat nature-genet-32SNP-effectSizeBMI.chr.pos | while read ll
+do
+  chr=`echo "$ll" | cut -f 1`
+  pos=`echo "$ll" | cut -f 2`
+  rs=`echo "$ll" | cut -f 3`
+
+  #echo "--------------------------------------------"
+  awk 'BEGIN {FS = "\t"; OFS = "\t"; t = 1000000}
+   {
+    if($1 == "'$chr'" && ($2 - '$pos' < t && $2 - '$pos' > -t ) && $3 != "'$rs'") 
+    {
+     print "'$rs'", '$pos', $1, $2, $3;
+    }
+   }
+  ' obes.inc.rsID.allele.with-p-lt-5e-8.chr.pos | wc -l
+done
