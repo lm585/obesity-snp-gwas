@@ -1,4 +1,4 @@
-#
+##
 
 cat nature-genet-32SNP-effectSizeBMI.chr.pos | while read ll
 do
