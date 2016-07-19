@@ -1,0 +1,14 @@
+> col1 = c(4,6,4,2,1,5,1,1,3,1,15,1,2,3,4,5,7,1,2,1,2,1,1,2,4,12,5,2,3,2,3,3)
+> col2 = c(0.13,0.19,0.18,0.11,0.17,0.17,0.1,0.19,0.07,0.06,0.39,0.06,0.1,0.13,0.15,0.13,0.31,0.09,0.06,0.09,0.06,0.09,0.07,0.06,0.22,0.23,0.14,0.12,0.15,0.1,0.14,0.13)
+> cor.test(col1,col2)
+
+        Pearson's product-moment correlation
+
+data:  col1 and col2
+t = 7.821, df = 30, p-value = 9.98e-09
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ 0.6584924 0.9083589
+sample estimates:
+      cor 
+0.8191089 
