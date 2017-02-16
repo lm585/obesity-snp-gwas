@@ -1,0 +1,47 @@
+http://www.math.wustl.edu/~victor/classes/ma322/r-eg-21.txt
+
+Example R programs and commands
+	21. Fisher exact test for independence in 2x2 contingency tables
+
+# All lines preceded by the "#" character are my comments.
+# All other left-justified lines are my input.
+# All other indented lines are the R program output.
+
+# FISHER EXACT TEST in R
+#
+# Example data:
+# Area     With rabies      Without rabies
+# ----     -----------      --------------
+#  E          16                11 
+#  W           6                17
+# Read the 2x2 contingency table, r=2 rows (X values), c=2 columns (Y values):
+data<-scan()
+  16      11
+   6      17
+
+tab <- t(matrix(data, nrow=2,ncol=2))  # transpose, as usual
+tab         # view the table to make sure it is right
+	[,1] [,2]
+   [1,]   16   11
+   [2,]    6   17
+   
+fisher.test(tab)   # performs a test of independence for matrix input.
+
+	   Fisher's Exact Test for Count Data
+
+   data:  tab
+   p-value = 0.02437
+
+# ==> REJECT the null hypothesis that X,Y (area,rabies) are independent at
+#     the 0.05 level,  namely that the odds of finding rabies is the same in
+#     area E and in area W. 
+
+   alternative hypothesis: true odds ratio is not equal to 1
+   95 percent confidence interval:
+     1.072816 16.715195
+   sample estimates:
+   odds ratio
+     3.998220
+
+# Conclude that the odds of rabies in E is about 4 times the odds of rabies
+#  in area W.
