@@ -32,6 +32,9 @@ fisher.test(tab)   # performs a test of independence for matrix input.
    data:  tab
    p-value = 0.02437
 
+# print p-value only
+fisher.test(tab)$p.value
+
 # ==> REJECT the null hypothesis that X,Y (area,rabies) are independent at
 #     the 0.05 level,  namely that the odds of finding rabies is the same in
 #     area E and in area W. 
