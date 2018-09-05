@@ -1,0 +1,25 @@
+> df <- read.table("C:/Users/Linyong/Documents/temp/lm_sample_data.txt", header = FALSE, sep = "\t")
+> str(df)
+'data.frame':   30 obs. of  3 variables:
+> names(df) <- c("x1", "xrand", "y")
+> fit <- lm(y ~ xrand, data = df)
+> summary(fit)
+
+Call:
+lm(formula = y ~ xrand, data = df)
+
+Residuals:
+   Min     1Q Median     3Q    Max 
+-34.98 -16.86  -0.26  17.65  37.26 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept) 41.36795    7.47847   5.532  6.5e-06 ***
+xrand        0.05095    0.43752   0.116    0.908    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 21.69 on 28 degrees of freedom
+Multiple R-squared:  0.000484,  Adjusted R-squared:  -0.03521 
+F-statistic: 0.01356 on 1 and 28 DF,  p-value: 0.9081
+
