@@ -23,3 +23,17 @@ Residual standard error: 21.69 on 28 degrees of freedom
 Multiple R-squared:  0.000484,  Adjusted R-squared:  -0.03521 
 F-statistic: 0.01356 on 1 and 28 DF,  p-value: 0.9081
 
+> cor.test(df$xrand, df$y)
+
+        Pearson's product-moment correlation
+
+data:  df$xrand and df$y
+t = 0.1164, df = 28, p-value = 0.9081
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ -0.3409714  0.3792635
+sample estimates:
+       cor 
+0.02200033 
+> 0.02200033^2
+[1] 0.0004840145
