@@ -2,6 +2,12 @@
 > str(df)
 'data.frame':   30 obs. of  3 variables:
 > names(df) <- c("x1", "xrand", "y")
+> str(df)
+'data.frame':   30 obs. of  3 variables:
+ $ x1   : int  1 2 3 4 5 6 7 8 9 10 ...
+ $ xrand: int  16 13 29 8 27 5 15 1 4 15 ...
+ $ y    : num  7.2 9.6 12 14.4 16.8 19.2 21.6 24 26.4 28.8 ...
+
 > fit <- lm(y ~ xrand, data = df)
 > summary(fit)
 
@@ -37,3 +43,26 @@ sample estimates:
 0.02200033 
 > 0.02200033^2
 [1] 0.0004840145
+> fit <- lm(y ~ x1 + xrand, data = df)
+> summary(fit)
+
+Call:
+lm(formula = y ~ x1 + xrand, data = df)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-0.5729 -0.2249 -0.1023  0.1212  2.5979 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept)  4.35884    0.26200  16.637 1.02e-15 ***
+x1           2.42039    0.01171 206.769  < 2e-16 ***
+xrand        0.01598    0.01119   1.428    0.165    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.5549 on 27 degrees of freedom
+Multiple R-squared:  0.9994,    Adjusted R-squared:  0.9993 
+F-statistic: 2.139e+04 on 2 and 27 DF,  p-value: < 2.2e-16
+> pairs(df)
+> 
