@@ -66,3 +66,11 @@ Multiple R-squared:  0.9994,    Adjusted R-squared:  0.9993
 F-statistic: 2.139e+04 on 2 and 27 DF,  p-value: < 2.2e-16
 > pairs(df)
 > 
+
+library(MASS)
+> fit <- rlm(c(pbmc_rna_d167, pbmc_rna_d209) ~ c(pbmc_dna_d167, pbmc_dna_d209))
+> summary(fit)
+> sumrmod <- summary(fit)
+> dd = data.frame(sumrmod$coefficients)       
+> dd$p.value =  2*pt(abs(dd$t.value), sumrmod$df[2], lower.tail=FALSE)   
+> dd
